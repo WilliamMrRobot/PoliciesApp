@@ -229,6 +229,14 @@
     <Compile Include="Migrations\201902152029530_OverrideConventions.Designer.cs">
       <DependentUpon>201902152029530_OverrideConventions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902152041358_PopulateCoverageTable.cs" />
+    <Compile Include="Migrations\201902152041358_PopulateCoverageTable.Designer.cs">
+      <DependentUpon>201902152041358_PopulateCoverageTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902152048490_PopulateRisksTable.cs" />
+    <Compile Include="Migrations\201902152048490_PopulateRisksTable.Designer.cs">
+      <DependentUpon>201902152048490_PopulateRisksTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -340,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902152029530_OverrideConventions.resx">
       <DependentUpon>201902152029530_OverrideConventions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902152041358_PopulateCoverageTable.resx">
+      <DependentUpon>201902152041358_PopulateCoverageTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902152048490_PopulateRisksTable.resx">
+      <DependentUpon>201902152048490_PopulateRisksTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
