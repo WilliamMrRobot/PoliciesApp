@@ -1,17 +1,21 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Models
 {
 	public class UserPolicy
 	{
-		public int Id { get; set; }
-
-		[Required]
-		public ApplicationUser Client { get; set; }
-
-		[Required]
-		public int Policy { get; set; }
+		public ApplicationUser Insured { get; set; }
+		public Policy Policy { get; set; }
 		public DateTime ClientPolicyStartValidity { get; set; }
+
+		[Key]
+		[Column(Order = 1)]
+		public int PolicyId { get; set; }
+
+		[Key]
+		[Column(Order = 2)]
+		public string InsuredId { get; set; }
 	}
 }
