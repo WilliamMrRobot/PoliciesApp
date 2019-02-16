@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Api.Models
+namespace Api.Core.Models
 {
     // Modelos usados como parámetros para las acciones de AccountController.
 

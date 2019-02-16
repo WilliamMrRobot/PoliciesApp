@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Api.Core.Models;
+using Api.Persistence;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Api.Models;
 
 namespace Api
 {

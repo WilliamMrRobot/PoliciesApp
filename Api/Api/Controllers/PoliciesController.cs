@@ -1,8 +1,9 @@
-﻿using Api.Models;
-using Api.Persistence;
+﻿using Api.Persistence;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Api.Core;
+using Api.Core.Models;
 
 namespace Api.Controllers
 {

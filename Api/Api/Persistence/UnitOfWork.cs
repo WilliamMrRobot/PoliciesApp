@@ -1,5 +1,7 @@
-﻿using Api.Models;
-using Api.Repositories;
+﻿using Api.Core;
+using Api.Core.Models;
+using Api.Core.Repositories;
+using Api.Persistence.Repositories;
 
 namespace Api.Persistence
 {

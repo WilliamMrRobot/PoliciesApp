@@ -1,9 +1,10 @@
-﻿using Api.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Api.Core.Models;
+using Api.Core.Repositories;
 
-namespace Api.Repositories
+namespace Api.Persistence.Repositories
 {
 	public class PolicyRepository : IPolicyRepository
 	{

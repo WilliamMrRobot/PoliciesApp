@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Api.Models;
+using Api.Core.Models;
 
-namespace Api.Repositories
+namespace Api.Core.Repositories
 {
 	public interface ICoverageRepository
 	{

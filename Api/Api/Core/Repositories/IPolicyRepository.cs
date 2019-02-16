@@ -1,7 +1,7 @@
-﻿using Api.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Api.Core.Models;
 
-namespace Api.Repositories
+namespace Api.Core.Repositories
 {
 	public interface IPolicyRepository
 	{

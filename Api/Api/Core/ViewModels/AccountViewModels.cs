@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Api.Models
+namespace Api.Core.ViewModels
 {
     // Modelos devueltos por las acciones de AccountController.
 

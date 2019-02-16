@@ -1,6 +1,6 @@
-﻿using Api.Repositories;
+﻿using Api.Core.Repositories;
 
-namespace Api.Persistence
+namespace Api.Core
 {
 	public interface IUnitOfWork
 	{
