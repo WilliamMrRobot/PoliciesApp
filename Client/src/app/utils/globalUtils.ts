@@ -14,9 +14,12 @@ export function getParameters(obj) {
 export const CONST = {
   TOKEN: 'TOKEN',
   USER: 'USER',
+  ADMIN: 'admin',
+  ROLE: 'admin',
   ID: 'ID',
   PHOTO: 'PHOTO',
   EXPIRES_IN: '0',
   TOKEN_TYPE: 'bearer',
   ID_LOCAL_STORAGE: 'ID_LOCAL_STORAGE',
+  USERROLES: 'Roles',
 };

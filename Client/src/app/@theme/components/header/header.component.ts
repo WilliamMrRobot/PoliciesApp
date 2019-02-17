@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { CONST, Utils } from '../../../utils/globalUtils';
 
 @Component({
   selector: 'ngx-header',
@@ -10,33 +10,47 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
+  @Input()
+  position = 'normal';
+  private userName = '';
+  private userArea = '';
+  private userPhoto = '';
+  public user = { name: '', picture: '' };
+  userMenu = [];
 
-  @Input() position = 'normal';
-
-  user: any;
-
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
-
-  constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private userService: UserService,
-              private analyticsService: AnalyticsService) {
-  }
+  constructor(
+    private sidebarService: NbSidebarService,
+    private menuService: NbMenuService,
+    private analyticsService: AnalyticsService,
+  ) {}
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.nick);
+    this.validateUserData();
+  }
+
+  validateUserData() {
+    this.userName = localStorage.getItem(CONST.USER);
+    this.userArea = localStorage.getItem(CONST.USERROLES);
+    this.userPhoto = localStorage.getItem(CONST.PHOTO);
+    if (this.user.name === '') {
+      this.user.name = this.userName;
+      this.user.picture = `${Utils.url}download/${this.userPhoto}`;
+    }
+
+    this.userMenu = [
+      { title: 'Profile', link: `/${this.userArea}/myprofile` },
+      { title: 'Change Password', link: `/${this.userArea}/changepwd` },
+      { title: 'Log out', link: '/auth/logout' },
+    ];
   }
 
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
-
     return false;
   }
 
   toggleSettings(): boolean {
     this.sidebarService.toggle(false, 'settings-sidebar');
-
     return false;
   }
 

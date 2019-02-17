@@ -8,7 +8,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Policies',
     icon: 'nb-home',
-    link: '/dashboard/policies',
+    link: '/admin/policies',
+    home: true,
+  },
+  {
+    title: 'Policies',
+    icon: 'nb-home',
+    link: '/admin/policies',
     home: true,
   },
 ];

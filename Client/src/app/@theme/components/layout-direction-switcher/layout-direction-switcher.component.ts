@@ -1,6 +1,6 @@
 import { Component, OnDestroy, Input } from '@angular/core';
 import { NbLayoutDirectionService, NbLayoutDirection } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
+import { takeWhile } from 'rxjs/operators/takeWhile';
 
 @Component({
   selector: 'ngx-layout-direction-switcher',

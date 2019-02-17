@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { CustomerService } from '../../services/customer.service';
 import { UtilitiesService } from '../../services/utilities.service';
 import { Router } from '@angular/router';
+import { CONST } from '../../utils/globalUtils';
 
 @Component({
   selector: 'app-login-page',
@@ -47,10 +48,15 @@ export class LoginPageComponent implements OnInit {
             String(r.expires_in),
             r.token_type,
             r.userName,
+            r.userId,
+            r.roles,
           );
           const urlDestArr = this.router.url.split('=');
 
-          let urlDest = 'dashboard';
+          let urlDest = 'client';
+          if (r.roles === CONST.ADMIN) {
+            urlDest = 'admin';
+          }
           if (urlDestArr.length > 1) {
             urlDest = urlDestArr[1].replace(/%2F/gi, '/');
           }

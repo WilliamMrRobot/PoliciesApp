@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MENU_ITEMS } from './dashboard.menu';
+import { MENU_ITEMS } from './admin.menu';
 
 @Component({
-  selector: 'ngx-pages',
+  selector: 'ngx-admin',
   template: `
     <ngx-sample-layout>
       <nb-menu [items]="menu"></nb-menu>
@@ -10,7 +10,7 @@ import { MENU_ITEMS } from './dashboard.menu';
     </ngx-sample-layout>
   `,
 })
-export class DashboardComponent implements OnInit {
+export class AdminComponent implements OnInit {
   menu = MENU_ITEMS;
 
   ngOnInit() {

@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ngx-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
-    <span class="created-by">Created with ♥ by <b><a href="https://akveo.com" target="_blank">Akveo</a></b> 2017</span>
+    <span class="created-by">
+      <b><a href="" target="_blank">William Ballesteros</a></b>
+      {{ currentYear }}</span
+    >
     <div class="socials">
       <a href="#" target="_blank" class="ion ion-social-github"></a>
       <a href="#" target="_blank" class="ion ion-social-facebook"></a>
@@ -13,5 +16,12 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
+  currentDate: Date;
+  currentYear: number;
+
+  ngOnInit() {
+    this.currentDate = new Date();
+    this.currentYear = this.currentDate.getFullYear();
+  }
 }

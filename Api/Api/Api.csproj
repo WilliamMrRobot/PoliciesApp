@@ -299,6 +299,10 @@
     <Compile Include="Persistence\Migrations\201902162039270_UpdateEntities.Designer.cs">
       <DependentUpon>201902162039270_UpdateEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\201902171634320_AddRoles.cs" />
+    <Compile Include="Persistence\Migrations\201902171634320_AddRoles.Designer.cs">
+      <DependentUpon>201902171634320_AddRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Core\Models\AccountBindingModels.cs" />
     <Compile Include="Core\ViewModels\AccountViewModels.cs" />
@@ -434,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201902162039270_UpdateEntities.resx">
       <DependentUpon>201902162039270_UpdateEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201902171634320_AddRoles.resx">
+      <DependentUpon>201902171634320_AddRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -2,6 +2,16 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
 
+
+/deep/ .nb-theme-corporate nb-layout .layout nb-layout-header nav {
+  background: #ffffff!important;
+  color: rgb(131, 128, 128)!important;
+}
+
+/deep/ .nb-theme-corporate nb-layout .layout nb-layout-header nav a {
+  color: rgb(131, 128, 128)!important;
+}
+
 @include nb-install-component() {
   display: flex;
   justify-content: space-between;

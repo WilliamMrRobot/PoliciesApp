@@ -1,14 +1,14 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { DashboardComponent } from './dashboard.component';
+import { AdminComponent } from './admin.component';
 import { NeedAuthGuard } from '../auth.guard';
 import { PoliciesComponent } from './policies/policies.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: AdminComponent,
     children: [
       {
         path: 'policies',
@@ -28,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class AdminRoutingModule {}
