@@ -1,0 +1,126 @@
+<main class="main">
+  <div class="container">
+    <img src="" style="width:200px;position:absolute;padding-top: 30px;" />
+    <div class="d-flex justify-content-center h-100">
+      <div class="card" *ngIf="registerStatus">
+        <div class="card-header">
+          <h3>Register Form</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label for="emailReg" class="col-sm-3 col-form-label"
+              ><strong>E-mail</strong></label
+            >
+            <div class="col-sm-7">
+              <input
+                type="emailReg"
+                class="form-control"
+                id="emailReg"
+                placeholder="e-mail"
+                [(ngModel)]="emailReg"
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="passwordReg" class="col-sm-3 col-form-label"
+              ><strong>Password</strong></label
+            >
+            <div class="col-sm-7">
+              <input
+                type="password"
+                class="form-control"
+                id="passwordReg"
+                placeholder="****"
+                [(ngModel)]="passwordReg"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="password2Reg" class="col-sm-3 col-form-label"
+              ><strong>Repeat Password</strong></label
+            >
+            <div class="col-sm-7">
+              <input
+                type="password"
+                class="form-control"
+                id="password2Reg"
+                placeholder="****"
+                [(ngModel)]="password2Reg"
+              />
+            </div>
+          </div>
+          <br />
+          <button
+            type="submit"
+            class="btn btn-primary register"
+            (click)="tryRegister()"
+          >
+            Register
+          </button>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Do you have an account?<a
+              routerlink="/auth/login"
+              href="/auth/login"
+              >Sign Up</a
+            >
+          </div>
+          <div class="d-flex justify-content-center">
+            <a href="/auth/forgot" routerlink="/auth/forgot"
+              >Forgot your password?</a
+            >
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!registerStatus" style="height: 645px;">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">Attention!</h4>
+          <p>
+            Registration successful.
+          </p>
+          <p class="mb-0">
+            Thanks.
+          </p>
+          <hr />
+          <a
+            class="btn btn-primary"
+            href="/auth/login"
+            routerlink="/auth/login"
+            role="button"
+            >Go to login</a
+          >
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+    </div>
+  </div>
+</main>
+<footer
+  class="footer mt-auto py-3"
+  style="background-color: black; height: 113px;"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4" style="text-align: center;">
+        <img src="" style="margin-top: 15px;width:100px;" />
+      </div>
+      <div class="col-4">
+        <p style="text-align: center;color:dimgray;margin-top: 20px;"></p>
+      </div>
+    </div>
+  </div>
+</footer>

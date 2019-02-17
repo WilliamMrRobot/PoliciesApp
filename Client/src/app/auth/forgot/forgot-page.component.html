@@ -1,0 +1,45 @@
+<main class="main">
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h3>Recover your account</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label for="user" class="col-sm-3 col-form-label"
+              ><strong>Type your email</strong></label
+            >
+            <div class="col-sm-9">
+              <input
+                type="email"
+                class="form-control"
+                id="user"
+                placeholder="user email"
+                [(ngModel)]="email"
+              />
+            </div>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary" (click)="tryRecover()">
+            Recover
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer
+  class="footer mt-auto py-3"
+  style="background-color: black; height: 113px;"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4" style="text-align: center;"></div>
+      <div class="col-4">
+        <p style="text-align: center;color:dimgray;margin-top: 20px;"></p>
+      </div>
+    </div>
+  </div>
+</footer>

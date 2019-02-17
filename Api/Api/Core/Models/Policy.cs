@@ -14,5 +14,7 @@ namespace Api.Core.Models
 		public byte CoverageId { get; set; }
 		public Risk Risk { get; set; }
 		public byte RiskId { get; set; }
+
+
 	}
 }
