@@ -5,6 +5,11 @@ import { NeedAuthGuard } from './auth.guard';
 const routes: Routes = [
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
   {
+    path: 'dashboard',
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    canActivate: [NeedAuthGuard],
+  },
+  {
     path: 'auth',
     loadChildren: 'app/auth/auth.module#AuthModule',
   },

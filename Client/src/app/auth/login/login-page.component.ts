@@ -50,7 +50,7 @@ export class LoginPageComponent implements OnInit {
           );
           const urlDestArr = this.router.url.split('=');
 
-          let urlDest = 'pages';
+          let urlDest = 'dashboard';
           if (urlDestArr.length > 1) {
             urlDest = urlDestArr[1].replace(/%2F/gi, '/');
           }
