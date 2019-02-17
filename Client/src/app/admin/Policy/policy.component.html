@@ -1,0 +1,118 @@
+<nb-card>
+  <nb-card-header>New Policy</nb-card-header>
+  <nb-card-body>
+    <form (ngSubmit)="onSubmit(promotionForm)" #promotionForm="ngForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputName">Policy Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputName"
+              name="inputName"
+              placeholder="Policy Name"
+              [(ngModel)]="policy.name"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputDescription">Policy Description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputDescription"
+              name="inputDescription"
+              placeholder="Policy Description"
+              [(ngModel)]="policy.description"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="startValidity">Start Validity</label>
+            <input
+              nbInput
+              class="form-control"
+              id="startValidity"
+              name="startValidity"
+              placeholder="Start Validity"
+              [nbDatepicker]="formstartpicker"
+              [(ngModel)]="policy.startvalidity"
+            />
+            <nb-datepicker #formstartpicker></nb-datepicker>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputCoverPeriod">Policy Cover Period</label>
+            <input
+              type="number"
+              class="form-control"
+              id="inputCoverPeriod"
+              min="1"
+              name="inputCoverPeriod"
+              placeholder="Policy Cover Period"
+              [(ngModel)]="policy.coverperiod"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputPrice">Policy Price</label>
+            <input
+              class="form-control"
+              type="number"
+              min="1"
+              step="any"
+              id="inputPrice"
+              name="inputPrice"
+              placeholder="Policy Price"
+              [(ngModel)]="policy.price"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputCoverage">Policy Coverage</label>
+            <select
+              class="form-control"
+              id="inputCoverage"
+              name="inputCoverage"
+              placeholder="Policy Coverage"
+              [(ngModel)]="policy.coverageId"
+            >
+              <option *ngFor="let coverage of coverages" [value]="coverage.id"
+                >{{ coverage.name }} / {{ coverage.cover }}</option
+              >
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputRisk">Policy Risk</label>
+            <select
+              class="form-control"
+              id="inputRisk"
+              name="inputRisk"
+              placeholder="Policy Risk"
+              [(ngModel)]="policy.riskId"
+            >
+              <option *ngFor="let risk of risks" [value]="risk.id">{{
+                risk.name
+              }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </nb-card-body>
+</nb-card>

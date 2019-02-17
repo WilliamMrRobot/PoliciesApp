@@ -12,9 +12,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Policies',
+    title: 'New Policy',
     icon: 'nb-home',
-    link: '/admin/policies',
+    link: '/admin/new',
     home: true,
   },
 ];

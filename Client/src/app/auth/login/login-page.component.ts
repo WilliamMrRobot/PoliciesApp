@@ -54,7 +54,7 @@ export class LoginPageComponent implements OnInit {
           const urlDestArr = this.router.url.split('=');
 
           let urlDest = 'client';
-          if (r.roles === CONST.ADMIN) {
+          if (r.roles.includes(CONST.ADMIN)) {
             urlDest = 'admin';
           }
           if (urlDestArr.length > 1) {

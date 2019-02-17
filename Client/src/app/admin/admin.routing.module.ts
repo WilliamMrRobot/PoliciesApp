@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin.component';
 import { NeedAuthGuard } from '../auth.guard';
 import { PoliciesComponent } from './policies/policies.component';
+import { PolicyComponent } from './policy/policy.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
       {
         path: 'policies',
         component: PoliciesComponent,
+        canActivate: [NeedAuthGuard],
+      },
+      {
+        path: 'new',
+        component: PolicyComponent,
         canActivate: [NeedAuthGuard],
       },
       {

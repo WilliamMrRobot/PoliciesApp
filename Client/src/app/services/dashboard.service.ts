@@ -143,7 +143,7 @@ export class DashboardService {
     return this.requestDelete(url, token, idToDelete);
   }
 
-  savePromotion(url, token, data): Observable<any> {
+  savePolicy(url, token, data): Observable<any> {
     const headers = this.getHeaders(token);
 
     return this.http.post(this.url + url, data, { headers: headers });
