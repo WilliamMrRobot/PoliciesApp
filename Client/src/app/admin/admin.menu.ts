@@ -13,8 +13,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'New Policy',
-    icon: 'nb-home',
+    icon: 'nb-keypad',
     link: '/admin/new',
-    home: true,
+    home: false,
+  },
+  {
+    title: 'Clients',
+    icon: 'nb-person',
+    link: '/admin/clients',
+    home: false,
   },
 ];

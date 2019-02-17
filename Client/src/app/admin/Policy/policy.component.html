@@ -87,6 +87,7 @@
               placeholder="Policy Coverage"
               [(ngModel)]="policy.coverageId"
             >
+              <option disabled hidden [value]="">-- select --</option>
               <option *ngFor="let coverage of coverages" [value]="coverage.id"
                 >{{ coverage.name }} / {{ coverage.cover }}</option
               >
@@ -104,7 +105,9 @@
               name="inputRisk"
               placeholder="Policy Risk"
               [(ngModel)]="policy.riskId"
+              (change)="onChangeRisk($event.target.value)"
             >
+              <option disabled hidden [value]="">-- select --</option>
               <option *ngFor="let risk of risks" [value]="risk.id">{{
                 risk.name
               }}</option>

@@ -24,8 +24,9 @@ export class PolicyComponent implements OnInit {
     this.loadRisks();
   }
 
-  policy = new Promotion('', '', '', '', '', '', '', '');
+  policy = new Promotion(0, '', '', '', '', '', '', '');
   coverages: any[];
+  allcoverages: any[];
   risks: any[];
   closeResult: string;
 
@@ -36,6 +37,7 @@ export class PolicyComponent implements OnInit {
         result => {
           if (result) {
             this.coverages = result;
+            this.allcoverages = result;
           } else {
             this.utilities.openSimpleModal(
               'Error',
@@ -63,6 +65,14 @@ export class PolicyComponent implements OnInit {
       },
       error => {},
     );
+  }
+
+  onChangeRisk(risk: string) {
+    if (risk === '4') {
+      this.coverages = this.allcoverages.filter(x => x.cover < 50);
+    } else {
+      this.coverages = this.allcoverages;
+    }
   }
 
   onSubmit(form: NgForm) {

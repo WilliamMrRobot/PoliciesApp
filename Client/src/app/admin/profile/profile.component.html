@@ -1,0 +1,70 @@
+<div class="row">
+  <nb-card class="col-md-3" style="padding: 10px;margin: 10px;color: #3baf29;">
+    <nb-card-header>
+      User Data:
+    </nb-card-header>
+    <nb-card-body>
+      Name
+      <h5 style="padding-left: 20px;">
+        {{ username }}
+      </h5>
+      email
+      <h5 style="padding-left: 20px;">
+        {{ email }}
+      </h5>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="onSaveData($event)"
+      >
+        Save
+      </button>
+    </nb-card-footer>
+  </nb-card>
+
+  <nb-card class="col-md-8" style="padding: 10px;margin: 10px;color: #3baf29;">
+    <nb-card-header>
+      Current Policies:
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table
+        [settings]="settingsUserPolicies"
+        [source]="sourceMyHotels"
+        (deleteConfirm)="onDeleteConfirmMyHotel($event)"
+      >
+      </ng2-smart-table>
+    </nb-card-body>
+
+    <nb-card-footer> </nb-card-footer>
+  </nb-card>
+
+  <div class="col-md-12" *ngIf="requestorRequest">
+    <nb-card class="inline-form-card">
+      <nb-card-header>Hotels</nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table
+          [settings]="settings"
+          [source]="source"
+          (deleteConfirm)="onDeleteConfirm($event)"
+          (editConfirm)="onCreateUpdateConfirm($event)"
+          (createConfirm)="onCreateUpdateConfirm($event)"
+          (custom)="onCustom($event)"
+          (userRowSelect)="onUserRowSelect($event)"
+        >
+        </ng2-smart-table>
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="onSaveData($event)"
+        >
+          Save
+        </button>
+      </nb-card-body>
+
+      <nb-card-footer> </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 ﻿using Api.Core;
-using Api.Core.Models;
 using Api.Core.Repositories;
 using Api.Persistence.Repositories;
 
@@ -12,6 +11,7 @@ namespace Api.Persistence
 		public ICoverageRepository Coverages { get; private set; }
 		public IRiskRepository Risks { get; private set; }
 		public IUserPolicyRepository UserPolicies { get; private set; }
+		public IUserRepository Users { get; private set; }
 
 		public UnitOfWork(ApplicationDbContext context)
 		{
@@ -20,6 +20,7 @@ namespace Api.Persistence
 			Coverages = new CoverageRepository(context);
 			Risks = new RiskRepository(context);
 			UserPolicies = new UserPolicyRepository(context);
+			Users = new UserRepository(context);
 		}
 
 		public void Complete()

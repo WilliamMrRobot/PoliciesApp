@@ -6,7 +6,7 @@ using System.Web.Http.Cors;
 
 namespace Api.Controllers
 {
-	[Authorize]
+	[Authorize(Roles = "admin")]
 	[EnableCorsAttribute("http://localhost:4200", "*", "*")]
 	public class PoliciesController : ApiController
 	{
@@ -31,9 +31,11 @@ namespace Api.Controllers
 		}
 
 		// POST: api/Policies
-		public void Post([FromBody]Policy policy)
+		public string Post([FromBody]Policy policy)
 		{
-			_unitOfWork.Policies.AddPolicy(policy);
+			var result = _unitOfWork.Policies.AddPolicy(policy);
+			_unitOfWork.Complete();
+			return result;
 		}
 
 		// PUT: api/Policies/5
@@ -41,12 +43,14 @@ namespace Api.Controllers
 		{
 
 			_unitOfWork.Policies.UpdatePolicy(id, policy);
+			_unitOfWork.Complete();
 		}
 
 		// DELETE: api/Policies/5
 		public void Delete(int id)
 		{
 			_unitOfWork.Policies.DeletePolicy(id);
+			_unitOfWork.Complete();
 		}
 	}
 }

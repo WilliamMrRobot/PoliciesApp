@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { NeedAuthGuard } from '../auth.guard';
 import { PoliciesComponent } from './policies/policies.component';
 import { PolicyComponent } from './policy/policy.component';
+import { ClientsComponent } from './clients/clients.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
       {
         path: 'new',
         component: PolicyComponent,
+        canActivate: [NeedAuthGuard],
+      },
+      {
+        path: 'clients',
+        component: ClientsComponent,
         canActivate: [NeedAuthGuard],
       },
       {

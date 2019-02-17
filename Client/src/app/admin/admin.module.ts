@@ -1,3 +1,4 @@
+import { ClientsModule } from './clients/clients.module';
 import { NgModule } from '@angular/core';
 
 import { AdminComponent } from './admin.component';
@@ -16,6 +17,7 @@ const ADMIN_COMPONENTS = [AdminComponent];
     AdminRoutingModule,
     PoliciesModule,
     PolicyModule,
+    ClientsModule,
     ThemeModule,
     Ng2SmartTableModule,
     Ng2CompleterModule,

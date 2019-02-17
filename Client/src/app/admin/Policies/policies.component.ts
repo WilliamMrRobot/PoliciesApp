@@ -19,10 +19,10 @@ export class PoliciesComponent {
 
   public settings = {
     actions: {
-      add: true,
-      edit: true,
-      delete: true,
-      editable: true,
+      add: false,
+      edit: false,
+      delete: false,
+      editable: false,
 
       columnTitle: '',
     },
@@ -50,13 +50,13 @@ export class PoliciesComponent {
       perPage: 100,
     },
     columns: {
-      name: { title: 'NAME', type: 'string', width: '5%' },
-      description: { title: 'DESCRIPTION', type: 'string', width: '5%' },
-      startvalidity: { title: 'START VALIDITY', type: 'string', width: '5%' },
-      coverperiod: { title: 'COVER PERIOD', type: 'string', width: '5%' },
-      price: { title: 'PRICE', type: 'string', width: '5%' },
-      coverageid: { title: 'COVERAGE', type: 'string', width: '5%' },
-      riskid: { title: 'RISK', type: 'string', width: '5%' },
+      name: { title: 'NAME', type: 'string', width: '14%' },
+      description: { title: 'DESCRIPTION', type: 'string', width: '14%' },
+      startValidity: { title: 'START VALIDITY', type: 'string', width: '14%' },
+      coverPeriod: { title: 'COVER PERIOD', type: 'string', width: '14%' },
+      price: { title: 'PRICE', type: 'string', width: '14%' },
+      coverageId: { title: 'COVERAGE', type: 'string', width: '14%' },
+      riskId: { title: 'RISK', type: 'string', width: '14%' },
     },
   };
 

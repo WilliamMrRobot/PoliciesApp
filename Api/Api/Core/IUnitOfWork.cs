@@ -8,6 +8,7 @@ namespace Api.Core
 		ICoverageRepository Coverages { get; }
 		IRiskRepository Risks { get; }
 		IUserPolicyRepository UserPolicies { get; }
+		IUserRepository Users { get; }
 		void Complete();
 	}
 }

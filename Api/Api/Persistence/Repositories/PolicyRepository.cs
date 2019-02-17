@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Api.Core.Models;
+using Api.Core.Repositories;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Api.Core.Models;
-using Api.Core.Repositories;
 
 namespace Api.Persistence.Repositories
 {
@@ -23,9 +24,18 @@ namespace Api.Persistence.Repositories
 				.SingleOrDefault(p => p.Id == policyId);
 		}
 
-		public void AddPolicy(Policy policy)
+		public string AddPolicy(Policy policy)
 		{
-			_context.Policies.Add(policy);
+			try
+			{
+				_context.Policies.Add(policy);
+				return "ok";
+			}
+			catch (Exception)
+			{
+				return "error";
+			};
+
 		}
 
 		public void UpdatePolicy(int id, Policy policy)
