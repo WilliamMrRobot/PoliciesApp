@@ -17,7 +17,7 @@ export class DashboardService {
   getHeaders(token): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: token,
+      Authorization: 'Bearer ' + token,
     });
     return headers;
   }
