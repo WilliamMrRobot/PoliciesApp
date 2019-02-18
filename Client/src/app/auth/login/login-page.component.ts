@@ -42,10 +42,10 @@ export class LoginPageComponent implements OnInit {
   tryLogin() {
     this.api.login(this.email, this.password).subscribe(
       r => {
-        if (r.roles === '[]') {
-          r.roles = 'client';
+        if (r.roles.includes(CONST.ADMIN)) {
+          r.roles = 'admin';
         } else {
-          r.roles = r.roles.includes(CONST.ADMIN) ? 'admin' : 'client';
+          r.roles = 'client';
         }
 
         if (r.access_token) {

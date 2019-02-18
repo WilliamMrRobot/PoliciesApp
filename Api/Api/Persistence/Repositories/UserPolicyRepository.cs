@@ -30,7 +30,10 @@ namespace Api.Persistence.Repositories
 					Name = x.Policy.Name,
 					PolicyId = x.PolicyId,
 					RiskName = x.Policy.Risk.Name,
-					StartValidity = x.Policy.StartValidity
+					StartValidity = x.Policy.StartValidity,
+					Description = x.Policy.Description,
+					CoverPeriod = x.Policy.CoverPeriod,
+					Price = x.Policy.Price
 
 				})
 				.ToList();

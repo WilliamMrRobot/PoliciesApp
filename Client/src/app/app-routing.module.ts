@@ -10,6 +10,11 @@ const routes: Routes = [
     canActivate: [NeedAuthGuard],
   },
   {
+    path: 'client',
+    loadChildren: 'app/client/client.module#ClientModule',
+    canActivate: [NeedAuthGuard],
+  },
+  {
     path: 'auth',
     loadChildren: 'app/auth/auth.module#AuthModule',
   },

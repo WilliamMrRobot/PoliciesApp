@@ -1,5 +1,6 @@
 ﻿using Api.Core.Models;
 using Api.Core.ViewModels;
+using Api.Persistence;
 using Api.Providers;
 using Api.Results;
 using Microsoft.AspNet.Identity;
@@ -338,6 +339,9 @@ namespace Api.Controllers
 			{
 				return GetErrorResult(result);
 			}
+			var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+			var userManager = new UserManager<ApplicationUser>(userStore);
+			await userManager.AddToRoleAsync(user.Id, "client");
 
 			return Ok();
 		}

@@ -6,7 +6,7 @@ using System.Web.Http.Cors;
 
 namespace Api.Controllers
 {
-	[Authorize(Roles = "admin")]
+	[Authorize(Roles = "client, admin")]
 	[EnableCors("http://localhost:4200", "*", "*")]
 	public class UserPoliciesController : ApiController
 	{
@@ -18,6 +18,7 @@ namespace Api.Controllers
 		}
 
 		// GET: api/Policies/5
+
 		public IEnumerable<UserPolicyResponseDto> Get(string id)
 		{
 			var userpolicies = _unitOfWork.UserPolicies.GetUserPolicies(id);
@@ -25,6 +26,7 @@ namespace Api.Controllers
 		}
 
 		// POST: api/Policies
+		[Authorize(Roles = "admin")]
 		public string Post([FromBody]UserPolicyDto userpolicy)
 		{
 			var result = _unitOfWork.UserPolicies.AddUserPolicy(userpolicy);
@@ -33,6 +35,7 @@ namespace Api.Controllers
 		}
 
 		// DELETE: api/Policies/5
+		[Authorize(Roles = "admin")]
 		public void Delete(int id)
 		{
 			_unitOfWork.Policies.DeletePolicy(id);

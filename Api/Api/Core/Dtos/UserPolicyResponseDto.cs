@@ -10,5 +10,8 @@ namespace Api.Core.Dtos
 		public string RiskName { get; set; }
 		public int PolicyId { get; set; }
 		public string InsuredId { get; set; }
+		public string Description { get; set; }
+		public int CoverPeriod { get; set; }
+		public decimal Price { get; set; }
 	}
 }

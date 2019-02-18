@@ -1,0 +1,33 @@
+<div class="row">
+  <nb-card class="col-md-12" style="padding: 10px;margin: 10px;color: #3baf29;">
+    <nb-card-header>
+      My Data:
+    </nb-card-header>
+    <nb-card-body>
+      Name
+      <h5 style="padding-left: 20px;">
+        {{ username }}
+      </h5>
+      email
+      <h5 style="padding-left: 20px;">
+        {{ email }}
+      </h5>
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card class="col-md-12" style="padding: 10px;margin: 10px;color: #3baf29;">
+    <nb-card-header>
+      My Policies:
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table
+        [settings]="settingsUserPolicies"
+        [source]="sourceUserPolicies"
+        (deleteConfirm)="onDeleteConfirmPolicy($event)"
+      >
+      </ng2-smart-table>
+    </nb-card-body>
+
+    <nb-card-footer> </nb-card-footer>
+  </nb-card>
+</div>

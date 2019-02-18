@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   position = 'normal';
   private userName = '';
   private userArea = '';
-  private userPhoto = '';
   public user = { name: '', picture: '' };
   userMenu = [];
 
@@ -31,17 +30,12 @@ export class HeaderComponent implements OnInit {
   validateUserData() {
     this.userName = localStorage.getItem(CONST.USER);
     this.userArea = localStorage.getItem(CONST.USERROLES);
-    this.userPhoto = localStorage.getItem(CONST.PHOTO);
     if (this.user.name === '') {
       this.user.name = this.userName;
-      this.user.picture = `${Utils.url}download/${this.userPhoto}`;
+      this.user.picture = `assets/images/${this.userArea}.png`;
     }
 
-    this.userMenu = [
-      { title: 'Profile', link: `/${this.userArea}/myprofile` },
-      { title: 'Change Password', link: `/${this.userArea}/changepwd` },
-      { title: 'Log out', link: '/auth/logout' },
-    ];
+    this.userMenu = [{ title: 'Log out', link: '/auth/logout' }];
   }
 
   toggleSidebar(): boolean {
