@@ -41,11 +41,12 @@ namespace Api.Controllers
 		}
 
 		// PUT: api/Policies/5
-		public void Put(int id, [FromBody]Policy policy)
+		public OkNegotiatedContentResult<string> Put(int id, [FromBody]Policy policy)
 		{
 
-			_unitOfWork.Policies.UpdatePolicy(id, policy);
+			var result = _unitOfWork.Policies.UpdatePolicy(id, policy);
 			_unitOfWork.Complete();
+			return Ok(result);
 		}
 
 		// DELETE: api/Policies/5

@@ -12,5 +12,7 @@ namespace Api.Core.Dtos
 		public decimal Price { get; set; }
 		public string CoverageName { get; set; }
 		public string RiskName { get; set; }
+		public int CoverageId { get; set; }
+		public int RiskId { get; set; }
 	}
 }

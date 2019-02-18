@@ -30,7 +30,9 @@ namespace Api.Persistence.Repositories
 					CoverPeriod = x.CoverPeriod,
 					Price = x.Price,
 					CoverageName = x.Coverage.Name,
-					RiskName = x.Risk.Name
+					RiskName = x.Risk.Name,
+					RiskId = x.RiskId,
+					CoverageId = x.CoverageId,
 				})
 				.SingleOrDefault(p => p.Id == policyId);
 		}
@@ -59,14 +61,12 @@ namespace Api.Persistence.Repositories
 			};
 		}
 
-		public void UpdatePolicy(int id, Policy policy)
+		public string UpdatePolicy(int id, Policy policy)
 		{
 			var currentPolicy = _context.Policies.Find(id);
-			if (currentPolicy == null)
-			{
-				return;
-			}
+			if (currentPolicy == null) return "error";
 			_context.Entry(currentPolicy).CurrentValues.SetValues(policy);
+			return "ok";
 		}
 
 		public string DeletePolicy(int id)
@@ -94,7 +94,9 @@ namespace Api.Persistence.Repositories
 					CoverPeriod = x.CoverPeriod,
 					Price = x.Price,
 					CoverageName = x.Coverage.Name,
-					RiskName = x.Risk.Name
+					RiskName = x.Risk.Name,
+					RiskId = x.RiskId,
+					CoverageId = x.CoverageId,
 				}).ToList();
 
 			return policies;

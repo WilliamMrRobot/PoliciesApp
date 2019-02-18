@@ -115,4 +115,9 @@ export class DashboardService {
     const headers = this.getHeaders(token);
     return this.http.post(this.url + url, data, { headers: headers });
   }
+
+  updatePolicy(url, token, data): Observable<any> {
+    const headers = this.getHeaders(token);
+    return this.http.put(this.url + url, data, { headers: headers });
+  }
 }

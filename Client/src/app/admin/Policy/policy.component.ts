@@ -35,9 +35,7 @@ export class PolicyComponent implements OnInit {
     this.loadCoverages();
     this.loadRisks();
     this.alertRisk = false;
-    if (this.policyId) {
-      this.loadPolicy();
-    }
+    if (this.policyId) this.loadPolicy();
   }
 
   loadPolicy() {
@@ -103,6 +101,14 @@ export class PolicyComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    if (this.policyId) {
+      this.editPolicy(form);
+    } else {
+      this.savePolicy(form);
+    }
+  }
+
+  savePolicy(form: NgForm) {
     this.dashboard
       .savePolicy('Policies', this.customer.getToken(), this.policy)
       .subscribe(
@@ -112,6 +118,35 @@ export class PolicyComponent implements OnInit {
             this.utilities.openSimpleModal(
               'Attention',
               'Policy was saved',
+              this.viewContainer,
+            );
+          } else {
+            this.utilities.openSimpleModal('Error', result, this.viewContainer);
+          }
+        },
+        error => {
+          this.utilities.openSimpleModal(
+            'Error',
+            'Error, please try later',
+            this.viewContainer,
+          );
+        },
+      );
+  }
+
+  editPolicy(form: NgForm) {
+    this.dashboard
+      .updatePolicy(
+        'Policies/' + this.policyId,
+        this.customer.getToken(),
+        this.policy,
+      )
+      .subscribe(
+        result => {
+          if (result === 'ok') {
+            this.utilities.openSimpleModal(
+              'Attention',
+              'Policy was updated',
               this.viewContainer,
             );
           } else {

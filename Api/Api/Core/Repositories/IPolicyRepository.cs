@@ -8,7 +8,7 @@ namespace Api.Core.Repositories
 	{
 		PolicyDto GetPolicy(int policyId);
 		string AddPolicy(Policy policy);
-		void UpdatePolicy(int id, Policy policy);
+		string UpdatePolicy(int id, Policy policy);
 		string DeletePolicy(int id);
 		IEnumerable<PolicyDto> GetPolicies();
 	}

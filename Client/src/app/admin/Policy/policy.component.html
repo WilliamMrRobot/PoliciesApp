@@ -1,5 +1,5 @@
 <nb-card>
-  <nb-card-header>New Policy</nb-card-header>
+  <nb-card-header>Policy</nb-card-header>
   <nb-card-body>
     <form (ngSubmit)="onSubmit(promotionForm)" #promotionForm="ngForm">
       <div class="row">
@@ -41,7 +41,7 @@
               name="startValidity"
               placeholder="Start Validity"
               [nbDatepicker]="formstartpicker"
-              [(ngModel)]="policy.startvalidity"
+              [(ngModel)]="policy.startValidity"
             />
             <nb-datepicker #formstartpicker></nb-datepicker>
           </div>
@@ -56,7 +56,7 @@
               min="1"
               name="inputCoverPeriod"
               placeholder="Policy Cover Period"
-              [(ngModel)]="policy.coverperiod"
+              [(ngModel)]="policy.coverPeriod"
             />
           </div>
         </div>
