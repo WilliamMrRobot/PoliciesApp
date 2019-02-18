@@ -35,10 +35,21 @@ namespace Api.Persistence.Repositories
 				.SingleOrDefault(p => p.Id == policyId);
 		}
 
+		private static bool CheckCoveragePercentOver50(Coverage coverage)
+		{
+			return (coverage != null && coverage.Cover > 50);
+		}
+
 		public string AddPolicy(Policy policy)
 		{
 			try
 			{
+				var risk = _context.Risks.FirstOrDefault(r => r.Id.Equals(policy.RiskId));
+				if (risk != null && risk.Name.ToLower() == "alto")
+				{
+					var coverage = _context.Coverages.FirstOrDefault(c => c.Id.Equals(policy.CoverageId));
+					if (CheckCoveragePercentOver50(coverage)) return "Error, coverage is over 50 percent";
+				}
 				_context.Policies.Add(policy);
 				return "ok";
 			}

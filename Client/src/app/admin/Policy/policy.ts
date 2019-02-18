@@ -1,4 +1,4 @@
-export class Promotion {
+export class Policy {
   constructor(
     public id: number,
     public name: string,

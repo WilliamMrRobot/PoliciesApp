@@ -42,6 +42,7 @@ export class LoginPageComponent implements OnInit {
   tryLogin() {
     this.api.login(this.email, this.password).subscribe(
       r => {
+        r.roles = r.roles.length == 0 ? 'client' : r.roles;
         if (r.access_token) {
           this.customer.setToken(
             r.access_token,

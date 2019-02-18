@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { DashboardService } from './../../services/dashboard.service';
-import { Promotion } from './policy';
+import { Policy } from './policy';
 import { NgForm } from '@angular/forms';
 import { UtilitiesService } from '../../services/utilities.service';
 
@@ -19,16 +19,18 @@ export class PolicyComponent implements OnInit {
     private utilities: UtilitiesService,
   ) {}
 
-  ngOnInit() {
-    this.loadCoverages();
-    this.loadRisks();
-  }
-
-  policy = new Promotion(0, '', '', '', '', '', '', '');
+  policy = new Policy(0, '', '', '', '', '', '', '');
   coverages: any[];
   allcoverages: any[];
   risks: any[];
   closeResult: string;
+  alertRisk: boolean;
+
+  ngOnInit() {
+    this.loadCoverages();
+    this.loadRisks();
+    this.alertRisk = false;
+  }
 
   loadCoverages() {
     this.dashboard
@@ -67,20 +69,12 @@ export class PolicyComponent implements OnInit {
     );
   }
 
-  onChangeRisk(risk: string) {
-    if (risk === '4') {
-      this.coverages = this.allcoverages.filter(x => x.cover < 50);
-    } else {
-      this.coverages = this.allcoverages;
-    }
-  }
-
   onSubmit(form: NgForm) {
     this.dashboard
       .savePolicy('Policies', this.customer.getToken(), this.policy)
       .subscribe(
         result => {
-          if (result) {
+          if (result === 'ok') {
             form.reset();
             this.utilities.openSimpleModal(
               'Attention',
@@ -88,11 +82,7 @@ export class PolicyComponent implements OnInit {
               this.viewContainer,
             );
           } else {
-            this.utilities.openSimpleModal(
-              'Error',
-              'Error, please try later',
-              this.viewContainer,
-            );
+            this.utilities.openSimpleModal('Error', result, this.viewContainer);
           }
         },
         error => {
@@ -103,5 +93,9 @@ export class PolicyComponent implements OnInit {
           );
         },
       );
+  }
+
+  onChangeRisk(risk: string) {
+    this.alertRisk = risk === '4' ? true : false;
   }
 }
