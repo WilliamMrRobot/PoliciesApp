@@ -36,5 +36,20 @@ namespace Api.Persistence.Repositories
 				};
 			return null;
 		}
+
+		public string DeleteUser(string id)
+		{
+			var user = _context.Users.FirstOrDefault(u => u.Id == id);
+
+			if (user == null) return "error";
+
+			var countUsPolices = _context.UserPolicies.Count(x => x.InsuredId.Equals(id));
+
+			if (countUsPolices > 0) return "error, user has associate policies";
+
+			_context.Users.Remove(user);
+			return "ok";
+
+		}
 	}
 }

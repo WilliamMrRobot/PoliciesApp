@@ -4,6 +4,7 @@ using Api.Core.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Results;
 
 namespace Api.Controllers
 {
@@ -48,10 +49,11 @@ namespace Api.Controllers
 		}
 
 		// DELETE: api/Policies/5
-		public void Delete(int id)
+		public OkNegotiatedContentResult<string> Delete(int id)
 		{
-			_unitOfWork.Policies.DeletePolicy(id);
+			var result = _unitOfWork.Policies.DeletePolicy(id);
 			_unitOfWork.Complete();
+			return Ok(result);
 		}
 	}
 }

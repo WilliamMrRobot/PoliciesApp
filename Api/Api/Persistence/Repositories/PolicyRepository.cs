@@ -57,7 +57,6 @@ namespace Api.Persistence.Repositories
 			{
 				return "error";
 			};
-
 		}
 
 		public void UpdatePolicy(int id, Policy policy)
@@ -70,14 +69,16 @@ namespace Api.Persistence.Repositories
 			_context.Entry(currentPolicy).CurrentValues.SetValues(policy);
 		}
 
-		public void DeletePolicy(int id)
+		public string DeletePolicy(int id)
 		{
 			var currentPolicy = _context.Policies.Find(id);
-			if (currentPolicy == null)
-			{
-				return;
-			}
+			if (currentPolicy == null) return "error, policy not found";
+
+			var associated = _context.UserPolicies.Count(x => x.PolicyId.Equals(id));
+			if (associated > 0) return "error, this policy is currently associated";
+
 			_context.Entry(currentPolicy).State = EntityState.Deleted;
+			return "ok";
 		}
 
 		public IEnumerable<PolicyDto> GetPolicies()

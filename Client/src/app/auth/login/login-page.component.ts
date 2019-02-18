@@ -42,7 +42,12 @@ export class LoginPageComponent implements OnInit {
   tryLogin() {
     this.api.login(this.email, this.password).subscribe(
       r => {
-        r.roles = r.roles.length == 0 ? 'client' : r.roles;
+        if (r.roles === '[]') {
+          r.roles = 'client';
+        } else {
+          r.roles = r.roles.includes(CONST.ADMIN) ? 'admin' : 'client';
+        }
+
         if (r.access_token) {
           this.customer.setToken(
             r.access_token,
@@ -53,11 +58,7 @@ export class LoginPageComponent implements OnInit {
             r.roles,
           );
           const urlDestArr = this.router.url.split('=');
-
-          let urlDest = 'client';
-          if (r.roles.includes(CONST.ADMIN)) {
-            urlDest = 'admin';
-          }
+          let urlDest = r.roles;
           if (urlDestArr.length > 1) {
             urlDest = urlDestArr[1].replace(/%2F/gi, '/');
           }

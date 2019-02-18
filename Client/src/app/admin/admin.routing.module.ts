@@ -24,6 +24,11 @@ const routes: Routes = [
         canActivate: [NeedAuthGuard],
       },
       {
+        path: 'edit/:id',
+        component: PolicyComponent,
+        canActivate: [NeedAuthGuard],
+      },
+      {
         path: 'clients',
         component: ClientsComponent,
         canActivate: [NeedAuthGuard],

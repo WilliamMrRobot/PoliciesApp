@@ -27,7 +27,7 @@ export class ClientsComponent implements OnInit {
           width: '10%',
         },
       ],
-      columnTitle: '',
+      columnTitle: 'Options',
     },
     add: {
       inputClass: '',
@@ -60,7 +60,7 @@ export class ClientsComponent implements OnInit {
 
   constructor(
     private customer: CustomerService,
-    private _dasboardService: DashboardService,
+    private _dashboardService: DashboardService,
     private router: Router,
     private utilities: UtilitiesService,
     private viewContainer: ViewContainerRef,
@@ -69,11 +69,11 @@ export class ClientsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadApplications();
+    this.loadUsers();
   }
 
-  loadApplications() {
-    this._dasboardService
+  loadUsers() {
+    this._dashboardService
       .getObjectsList('users', this.customer.getToken())
       .subscribe(
         result => {
@@ -101,5 +101,45 @@ export class ClientsComponent implements OnInit {
     const userId = event.data.id;
     const urlDest = '/admin/profile/' + userId;
     this.router.navigateByUrl(urlDest);
+  }
+
+  onDeleteConfirm(event) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      this.onDeleteConfirmClient(event);
+    } else {
+      event.confirm.reject();
+    }
+  }
+
+  onDeleteConfirmClient(event) {
+    const userId = event.data.id;
+    this._dashboardService
+      .deleteClient('users/' + userId, this.customer.getToken())
+      .subscribe(
+        result => {
+          console.log('onSaveData OKKKKKK');
+          if (result === 'ok') {
+            this.utilities.openSimpleModal(
+              'Attention',
+              'User deleted',
+              this.viewContainer,
+            );
+            this.loadUsers();
+          } else {
+            this.utilities.openSimpleModal(
+              'Error',
+              'Error, please try later',
+              this.viewContainer,
+            );
+          }
+        },
+        error => {
+          this.utilities.openSimpleModal(
+            'Error',
+            'Error, please try later',
+            this.viewContainer,
+          );
+        },
+      );
   }
 }

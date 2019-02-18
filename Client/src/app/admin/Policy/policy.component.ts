@@ -4,6 +4,7 @@ import { DashboardService } from './../../services/dashboard.service';
 import { Policy } from './policy';
 import { NgForm } from '@angular/forms';
 import { UtilitiesService } from '../../services/utilities.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'policy',
@@ -12,13 +13,7 @@ import { UtilitiesService } from '../../services/utilities.service';
   providers: [DashboardService, UtilitiesService],
 })
 export class PolicyComponent implements OnInit {
-  constructor(
-    private dashboard: DashboardService,
-    private customer: CustomerService,
-    private viewContainer: ViewContainerRef,
-    private utilities: UtilitiesService,
-  ) {}
-
+  public policyId: String;
   policy = new Policy(0, '', '', '', '', '', '', '');
   coverages: any[];
   allcoverages: any[];
@@ -26,10 +21,48 @@ export class PolicyComponent implements OnInit {
   closeResult: string;
   alertRisk: boolean;
 
+  constructor(
+    private dashboard: DashboardService,
+    private customer: CustomerService,
+    private viewContainer: ViewContainerRef,
+    private utilities: UtilitiesService,
+    private route: ActivatedRoute,
+  ) {
+    this.policyId = this.route.snapshot.paramMap.get('id');
+  }
+
   ngOnInit() {
     this.loadCoverages();
     this.loadRisks();
     this.alertRisk = false;
+    if (this.policyId) {
+      this.loadPolicy();
+    }
+  }
+
+  loadPolicy() {
+    this.dashboard
+      .getObjectsList('Policies/' + this.policyId, this.customer.getToken())
+      .subscribe(
+        result => {
+          if (result) {
+            this.policy = result;
+          } else {
+            this.utilities.openSimpleModal(
+              'Error',
+              'Error, please try later',
+              this.viewContainer,
+            );
+          }
+        },
+        error => {
+          this.utilities.openSimpleModal(
+            'Error',
+            'Error, please try later',
+            this.viewContainer,
+          );
+        },
+      );
   }
 
   loadCoverages() {

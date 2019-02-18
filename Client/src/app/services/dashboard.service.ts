@@ -70,43 +70,6 @@ export class DashboardService {
     return this.http.get(this.url + url + searchParams, { headers: headers });
   }
 
-  addDialer(url, token, data, area, dialerName): Observable<any> {
-    const dataToSend = {};
-    dataToSend['dialerName'] = dialerName;
-    dataToSend['dialerData'] = data;
-    dataToSend['dialerArea'] = area;
-    const json = JSON.stringify(dataToSend);
-
-    const params = json;
-
-    // Establecemos cabeceras
-    const headers = this.getHeaders(token);
-
-    return this.http.post(this.url + url, params, { headers: headers });
-  }
-
-  dialerScheduleCall(
-    url,
-    token,
-    msisdn,
-    datetime,
-    agentPhone,
-  ): Observable<any> {
-    const dataToSend = {};
-    dataToSend['msisdn'] = msisdn;
-    dataToSend['datetime'] = datetime;
-    dataToSend['agentPhone'] = agentPhone;
-
-    const json = JSON.stringify(dataToSend);
-
-    const params = json;
-
-    // Establecemos cabeceras
-    const headers = this.getHeaders(token);
-
-    return this.http.post(this.url + url, params, { headers: headers });
-  }
-
   saveMaster(url, token, data): Observable<any> {
     const headers = this.getHeaders(token);
 
@@ -143,30 +106,13 @@ export class DashboardService {
     return this.requestDelete(url, token, idToDelete);
   }
 
+  public deleteClient(url, token): Observable<any> {
+    const headers = this.getHeaders(token);
+    return this.http.delete(this.url + url, { headers: headers });
+  }
+
   savePolicy(url, token, data): Observable<any> {
     const headers = this.getHeaders(token);
-
     return this.http.post(this.url + url, data, { headers: headers });
-  }
-
-  saveOrUpdateHotel(url, token, data): Observable<any> {
-    const headers = this.getHeaders(token);
-
-    return this.http.post(this.url + url, data, { headers: headers });
-  }
-
-  showSpinner() {
-    const el = document.getElementById('nb-global-spinner');
-    if (el) {
-      el.style['display'] = 'inline';
-      el.style['opacity'] = '0.5';
-    }
-  }
-
-  hideSpinner() {
-    const el = document.getElementById('nb-global-spinner');
-    if (el) {
-      el.style['display'] = 'none';
-    }
   }
 }

@@ -7,5 +7,6 @@ namespace Api.Core.Repositories
 	{
 		IEnumerable<User> GetUsers();
 		User GetUser(string id);
+		string DeleteUser(string id);
 	}
 }

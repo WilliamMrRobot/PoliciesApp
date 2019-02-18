@@ -21,10 +21,16 @@ export class PoliciesComponent {
     actions: {
       add: false,
       edit: false,
-      delete: false,
+      delete: true,
       editable: false,
-
-      columnTitle: '',
+      custom: [
+        {
+          name: 'Details',
+          title: `<i  class="nb-edit"></i>`,
+          width: '10%',
+        },
+      ],
+      columnTitle: 'Options',
     },
     add: {
       inputClass: '',
@@ -99,43 +105,38 @@ export class PoliciesComponent {
       );
   }
 
-  onCreateUpdateConfirm(event) {
-    let policiesIdToAssociate: String[];
-    policiesIdToAssociate = [];
-    for (let obj in this.policiesToAdmin) {
-      let hotelId = this.policiesToAdmin[obj]._id;
-      policiesIdToAssociate.push(hotelId);
+  onCreateUpdateConfirm(event) {}
+
+  onCustom(event) {
+    const policyId = event.data.id;
+    const urlDest = '/admin/edit/' + policyId;
+    this.router.navigateByUrl(urlDest);
+  }
+
+  onDeleteConfirm(event) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      this.onDeleteConfirmClient(event);
+    } else {
+      event.confirm.reject();
     }
+  }
 
-    const applicationData = {
-      hotels: policiesIdToAssociate,
-      application: this.idApplication,
-    };
-
+  onDeleteConfirmClient(event) {
+    const policyId = event.data.id;
     this._dashboardService
-      .associatePoliciesApplication(
-        'application-associate-hotels',
-        this.customer.getToken(),
-        applicationData,
-      )
+      .deleteClient('Policies/' + policyId, this.customer.getToken())
       .subscribe(
         result => {
           console.log('onSaveData OKKKKKK');
-          if (result.message === 'OK') {
+          if (result === 'ok') {
             this.utilities.openSimpleModal(
               'Attention',
-              'Policy Saved',
+              'Policy deleted',
               this.viewContainer,
             );
-            const urlDest = '/admin/application';
-
-            this.router.navigateByUrl(urlDest);
+            this.loadPolicies();
           } else {
-            this.utilities.openSimpleModal(
-              'Error',
-              'Error, please try later',
-              this.viewContainer,
-            );
+            this.utilities.openSimpleModal('Error', result, this.viewContainer);
           }
         },
         error => {

@@ -5,13 +5,67 @@ $dribbble-color: #ea4b89;
 $twitter-color: #68aade;
 $facebook-color: #3b5999;
 
+// estilos custom
+:host /deep/ tr.solved {
+  background-color: rgba(255, 255, 0, 0.5) !important;
+}
+:host /deep/ tr.aborted {
+  background-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+[role='main'] {
+  padding-top: 48px; /* Space for fixed navbar */
+}
+
+:host /deep/ ng2-st-tbody-edit-delete {
+  display: flex !important;
+  //display: inline-block !important;
+  height: 100 !important;
+  width: 66% !important;
+  padding-top: 26px;
+}
+
+:host /deep/ ng2-st-tbody-create-cancel {
+  padding-top: 17px;
+}
+
+:host
+  /deep/
+  ng2-st-tbody-custom
+  a.ng2-smart-action.ng2-smart-action-custom-custom {
+  //display: inline-block;
+  width: 100% !important;
+  text-align: center;
+  font-size: 1.1em;
+  color: #3baf29;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  height: 100 !important;
+}
+
+:host
+  /deep/
+  ng2-st-tbody-custom
+  a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+  color: #5dcfe3;
+}
+
+:host /deep/ ng2-smart-table .ng2-smart-actions {
+  width: 100% !important;
+  //text-align: center;
+  display: inline-flex !important;
+  height: 100%;
+}
+
+// fin estilos custom
+
 html {
   min-height: 100%;
-	background: linear-gradient($bg-start, $bg-end);
+  background: linear-gradient($bg-start, $bg-end);
 }
 
 body {
-	background-color: transparent;
+  background-color: transparent;
 }
 
 .card-profile {
@@ -22,7 +76,7 @@ body {
   border-radius: 0;
   border: 0;
   box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.2);
-  
+
   .card-img-top {
     border-radius: 0;
   }
@@ -44,23 +98,23 @@ body {
       margin-top: 0.2em;
     }
   }
-  
+
   .card-links {
     margin-bottom: 25px;
 
     .fa {
       margin: 0 1em;
       font-size: 1.6em;
-      
+
       &:focus,
       &:hover {
         text-decoration: none;
       }
-      
+
       &.fa-dribbble {
         color: $dribbble-color;
         font-weight: bold;
-        
+
         &:hover {
           color: darken($dribbble-color, 10%);
         }
@@ -73,7 +127,7 @@ body {
           color: darken($twitter-color, 10%);
         }
       }
-      
+
       &.fa-facebook {
         color: $facebook-color;
 

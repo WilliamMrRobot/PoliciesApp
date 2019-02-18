@@ -8,6 +8,8 @@
           [source]="source"
           (editConfirm)="onCreateUpdateConfirm($event)"
           (createConfirm)="onCreateUpdateConfirm($event)"
+          (deleteConfirm)="onDeleteConfirm($event)"
+          (custom)="onCustom($event)"
         >
         </ng2-smart-table>
       </nb-card-body>

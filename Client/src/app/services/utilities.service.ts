@@ -4,10 +4,7 @@ import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
 
 @Injectable()
 export class UtilitiesService {
-  constructor(
-    private modalDialogService: ModalDialogService,
-    private viewContainer: ViewContainerRef,
-  ) {}
+  constructor(private modalDialogService: ModalDialogService) {}
 
   showSpinner() {
     const el = document.getElementById('nb-global-spinner');

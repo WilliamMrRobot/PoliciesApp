@@ -30,5 +30,13 @@ namespace Api.Controllers
 			var user = _unitOfWork.Users.GetUser(id);
 			return user;
 		}
+
+		// DELETE: api/Policies/5
+		public string Delete(string id)
+		{
+			var result = _unitOfWork.Users.DeleteUser(id);
+			_unitOfWork.Complete();
+			return result;
+		}
 	}
 }
