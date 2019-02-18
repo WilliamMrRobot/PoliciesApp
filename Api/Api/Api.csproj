@@ -265,9 +265,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PoliciesController.cs" />
     <Compile Include="Controllers\RisksController.cs" />
+    <Compile Include="Controllers\UserPoliciesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Core\Dtos\PolicyDto.cs" />
     <Compile Include="Core\Dtos\User.cs" />
+    <Compile Include="Core\Dtos\UserPolicyDto.cs" />
+    <Compile Include="Core\Dtos\UserPolicyResponseDto.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -307,6 +311,10 @@
     <Compile Include="Persistence\Migrations\201902171634320_AddRoles.cs" />
     <Compile Include="Persistence\Migrations\201902171634320_AddRoles.Designer.cs">
       <DependentUpon>201902171634320_AddRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201902180333430_RemoveDate.cs" />
+    <Compile Include="Persistence\Migrations\201902180333430_RemoveDate.Designer.cs">
+      <DependentUpon>201902180333430_RemoveDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Core\Models\AccountBindingModels.cs" />
@@ -446,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201902171634320_AddRoles.resx">
       <DependentUpon>201902171634320_AddRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201902180333430_RemoveDate.resx">
+      <DependentUpon>201902180333430_RemoveDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

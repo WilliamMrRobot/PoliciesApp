@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Api.Core.Models;
+﻿using Api.Core.Dtos;
+using System.Collections.Generic;
 
 namespace Api.Core.Repositories
 {
 	public interface IUserPolicyRepository
 	{
-		IEnumerable<UserPolicy> GetUserPolicies(string insuranceId);
-		void AddUserPolicy(UserPolicy userPolicy);
+		IEnumerable<UserPolicyResponseDto> GetUserPolicies(string insuranceId);
+		string AddUserPolicy(UserPolicyDto userPolicy);
 	}
 }

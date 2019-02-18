@@ -1,4 +1,5 @@
-﻿using Api.Core.Models;
+﻿using Api.Core.Dtos;
+using Api.Core.Models;
 using Api.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,21 @@ namespace Api.Persistence.Repositories
 			_context = context;
 		}
 
-		public Policy GetPolicy(int policyId)
+		public PolicyDto GetPolicy(int policyId)
 		{
 			return _context.Policies
-				.Include(p => p.Risk)
-				.Include(p => p.Coverage)
+				.Include(p => p.Risk.Name)
+				.Include(p => p.Coverage.Name).Select(x => new PolicyDto
+				{
+					Id = x.Id,
+					Name = x.Name,
+					Description = x.Description,
+					StartValidity = x.StartValidity,
+					CoverPeriod = x.CoverPeriod,
+					Price = x.Price,
+					CoverageName = x.Coverage.Name,
+					RiskName = x.Risk.Name
+				})
 				.SingleOrDefault(p => p.Id == policyId);
 		}
 
@@ -58,11 +69,23 @@ namespace Api.Persistence.Repositories
 			_context.Entry(currentPolicy).State = EntityState.Deleted;
 		}
 
-		public IEnumerable<Policy> GetPolicies()
+		public IEnumerable<PolicyDto> GetPolicies()
 		{
-			return _context.Policies
+			var policies = _context.Policies
 				.Include(p => p.Risk)
-				.Include(p => p.Coverage);
+				.Include(p => p.Coverage).Select(x => new PolicyDto
+				{
+					Id = x.Id,
+					Name = x.Name,
+					Description = x.Description,
+					StartValidity = x.StartValidity,
+					CoverPeriod = x.CoverPeriod,
+					Price = x.Price,
+					CoverageName = x.Coverage.Name,
+					RiskName = x.Risk.Name
+				}).ToList();
+
+			return policies;
 		}
 	}
 }

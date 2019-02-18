@@ -1,14 +1,15 @@
-﻿using Api.Core.Models;
+﻿using Api.Core.Dtos;
+using Api.Core.Models;
 using System.Collections.Generic;
 
 namespace Api.Core.Repositories
 {
 	public interface IPolicyRepository
 	{
-		Policy GetPolicy(int policyId);
+		PolicyDto GetPolicy(int policyId);
 		string AddPolicy(Policy policy);
 		void UpdatePolicy(int id, Policy policy);
 		void DeletePolicy(int id);
-		IEnumerable<Policy> GetPolicies();
+		IEnumerable<PolicyDto> GetPolicies();
 	}
 }

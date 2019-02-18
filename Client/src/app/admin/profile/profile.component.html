@@ -32,8 +32,8 @@
     <nb-card-body>
       <ng2-smart-table
         [settings]="settingsUserPolicies"
-        [source]="sourceMyHotels"
-        (deleteConfirm)="onDeleteConfirmMyHotel($event)"
+        [source]="sourceUserPolicies"
+        (deleteConfirm)="onDeleteConfirmPolicy($event)"
       >
       </ng2-smart-table>
     </nb-card-body>
@@ -41,9 +41,9 @@
     <nb-card-footer> </nb-card-footer>
   </nb-card>
 
-  <div class="col-md-12" *ngIf="requestorRequest">
+  <div class="col-md-12">
     <nb-card class="inline-form-card">
-      <nb-card-header>Hotels</nb-card-header>
+      <nb-card-header>Policies</nb-card-header>
       <nb-card-body>
         <ng2-smart-table
           [settings]="settings"

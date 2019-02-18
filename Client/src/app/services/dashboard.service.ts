@@ -115,16 +115,16 @@ export class DashboardService {
     });
   }
 
-  associateHotelsApplication(url, token, data): Observable<any> {
+  associatePoliciesApplication(url, token, data): Observable<any> {
     const headers = this.getHeaders(token);
 
     return this.http.post(this.url + url, data, { headers: headers });
   }
 
-  desAssociateHotelsApplication(url, token): Observable<any> {
+  desAssociatePolicyApplication(url, token): Observable<any> {
     const headers = this.getHeaders(token);
 
-    return this.http.post(this.url + url, {}, { headers: headers });
+    return this.http.delete(this.url + url, { headers: headers });
   }
 
   saveContent(url, token, data): Observable<any> {

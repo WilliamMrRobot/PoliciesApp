@@ -1,4 +1,5 @@
 ﻿using Api.Core;
+using Api.Core.Dtos;
 using Api.Core.Models;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -17,14 +18,14 @@ namespace Api.Controllers
 			_unitOfWork = unitOfWork;
 		}
 		// GET: api/Policies
-		public IEnumerable<Policy> Get()
+		public IEnumerable<PolicyDto> Get()
 		{
 			var policies = _unitOfWork.Policies.GetPolicies();
 			return policies;
 		}
 
 		// GET: api/Policies/5
-		public Policy Get(int id)
+		public PolicyDto Get(int id)
 		{
 			var policy = _unitOfWork.Policies.GetPolicy(id);
 			return policy;

@@ -98,9 +98,8 @@ export class ClientsComponent implements OnInit {
   }
 
   onCustom(event) {
-    const idApplication = event.data.id;
-    const urlDest = '/admin/profile/' + idApplication;
-
+    const userId = event.data.id;
+    const urlDest = '/admin/profile/' + userId;
     this.router.navigateByUrl(urlDest);
   }
 }

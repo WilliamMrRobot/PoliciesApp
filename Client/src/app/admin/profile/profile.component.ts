@@ -10,16 +10,16 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'ngx-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  providers: [UtilitiesService, CustomerService, DashboardService],
+  providers: [DashboardService, UtilitiesService, CustomerService],
 })
 export class ProfileComponent {
   public userId: String;
-  public hotelsToAdmin: any[];
+  public policiesToAdmin: any[];
   public username: String;
   public email: String;
 
   public source: LocalDataSource;
-  public sourceMyHotels: LocalDataSource;
+  public sourceUserPolicies: LocalDataSource;
 
   public settings = {
     selectMode: 'multi',
@@ -28,7 +28,6 @@ export class ProfileComponent {
       edit: false,
       delete: false,
       editable: false,
-
       columnTitle: '',
     },
     add: {
@@ -55,11 +54,13 @@ export class ProfileComponent {
       perPage: 100,
     },
     columns: {
-      hotel: { title: 'Name', type: 'string', width: '35%' },
-      country: { title: 'Country', type: 'string', width: '25%' },
-      city: { title: 'City', type: 'string', width: '25%' },
-      brand: { title: 'Brand', type: 'string', width: '5%' },
-      marsha: { title: 'Marsha', type: 'string', width: '10%' },
+      name: { title: 'NAME', type: 'string', width: '14%' },
+      description: { title: 'DESCRIPTION', type: 'string', width: '14%' },
+      startValidity: { title: 'START VALIDITY', type: 'string', width: '14%' },
+      coverPeriod: { title: 'COVER PERIOD', type: 'string', width: '14%' },
+      price: { title: 'PRICE', type: 'string', width: '14%' },
+      coverageName: { title: 'COVERAGE', type: 'string', width: '14%' },
+      riskName: { title: 'RISK', type: 'string', width: '14%' },
     },
   };
 
@@ -82,11 +83,10 @@ export class ProfileComponent {
       perPage: 100,
     },
     columns: {
-      hotel: { title: 'Name', type: 'string', width: '35%' },
-      country: { title: 'Country', type: 'string', width: '25%' },
-      city: { title: 'City', type: 'string', width: '25%' },
-      brand: { title: 'Brand', type: 'string', width: '5%' },
-      marsha: { title: 'Marsha', type: 'string', width: '10%' },
+      name: { title: 'Name', type: 'string', width: '22%' },
+      startValidity: { title: 'Start Validity', type: 'string', width: '22%' },
+      coverageName: { title: 'Coverage', type: 'string', width: '22%' },
+      riskName: { title: 'Risk', type: 'string', width: '22%' },
     },
   };
 
@@ -98,7 +98,7 @@ export class ProfileComponent {
     private viewContainer: ViewContainerRef,
   ) {
     this.source = new LocalDataSource();
-    this.sourceMyHotels = new LocalDataSource();
+    this.sourceUserPolicies = new LocalDataSource();
     this.userId = this.route.snapshot.paramMap.get('id');
     this.loadUser();
   }
@@ -122,7 +122,7 @@ export class ProfileComponent {
       .subscribe(
         result => {
           if (result) {
-            this.username = result.name;
+            this.username = result.userName;
             this.email = result.email;
           } else {
             this.showError();
@@ -136,11 +136,11 @@ export class ProfileComponent {
 
   loadUserPolicies() {
     this._dashboardService
-      .getObjectsList('hotels/' + this.userId, this.customer.getToken())
+      .getObjectsList('userpolicies/' + this.userId, this.customer.getToken())
       .subscribe(
         result => {
           if (result) {
-            this.sourceMyHotels = result;
+            this.sourceUserPolicies = result;
           } else {
             this.showError();
           }
@@ -151,9 +151,9 @@ export class ProfileComponent {
       );
   }
 
-  loadHotels() {
+  loadPolicies() {
     this._dashboardService
-      .getObjectsList('hotels/application', this.customer.getToken())
+      .getObjectsList('policies', this.customer.getToken())
       .subscribe(
         result => {
           if (result) {
@@ -169,26 +169,25 @@ export class ProfileComponent {
   }
 
   onUserRowSelect(event) {
-    this.hotelsToAdmin = event.selected;
+    this.policiesToAdmin = event.selected;
   }
 
-  onDeleteConfirmMyHotel(event) {
-    const idHotel = event.data._id;
+  onDeleteConfirmPolicy(event) {
+    const policyId = event.data.id;
     this._dashboardService
-      .desAssociateHotelsApplication(
-        'des-associate-hotel/' + idHotel,
+      .desAssociatePolicyApplication(
+        'userpolicies/' + policyId,
         this.customer.getToken(),
       )
       .subscribe(
         result => {
-          console.log('onSaveData OKKKKKK');
           if (result) {
             this.utilities.openSimpleModal(
               'Attention',
-              'Hotel deleted',
+              'User Policy deleted',
               this.viewContainer,
             );
-            this.loadMyHotels();
+            this.loadUserPolicies();
           } else {
             this.showError();
           }
@@ -200,31 +199,30 @@ export class ProfileComponent {
   }
 
   onSaveData(event) {
-    let hotelsIdToAssociate: String[];
-    hotelsIdToAssociate = [];
-    for (let obj in this.hotelsToAdmin) {
-      let hotelId = this.hotelsToAdmin[obj]._id;
-      hotelsIdToAssociate.push(hotelId);
+    let policiesIdToAssociate: String[];
+    policiesIdToAssociate = [];
+    for (let obj in this.policiesToAdmin) {
+      let policyId = this.policiesToAdmin[obj].id;
+      policiesIdToAssociate.push(policyId);
     }
 
     const applicationData = {
-      hotels: hotelsIdToAssociate,
-      application: this.idApplication,
+      PolicyIds: policiesIdToAssociate,
+      UserId: this.userId,
     };
 
     this._dashboardService
-      .associateHotelsApplication(
-        'application-associate-hotels',
+      .associatePoliciesApplication(
+        'UserPolicies',
         this.customer.getToken(),
         applicationData,
       )
       .subscribe(
         result => {
-          console.log('onSaveData OKKKKKK');
           if (result) {
             this.utilities.openSimpleModal(
               'Attention',
-              'Hotel saved',
+              'User Policy saved',
               this.viewContainer,
             );
             this.ngOnInit();
@@ -237,6 +235,6 @@ export class ProfileComponent {
         },
       );
 
-    console.log('onSaveData' + this.hotelsToAdmin.length);
+    console.log('onSaveData' + this.policiesToAdmin.length);
   }
 }

@@ -9,6 +9,7 @@ import { ThemeModule } from '../@theme/theme.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { NbDatepickerModule } from '@nebular/theme';
+import { ProfileModule } from './profile/profile.module';
 
 const ADMIN_COMPONENTS = [AdminComponent];
 
@@ -18,6 +19,7 @@ const ADMIN_COMPONENTS = [AdminComponent];
     PoliciesModule,
     PolicyModule,
     ClientsModule,
+    ProfileModule,
     ThemeModule,
     Ng2SmartTableModule,
     Ng2CompleterModule,

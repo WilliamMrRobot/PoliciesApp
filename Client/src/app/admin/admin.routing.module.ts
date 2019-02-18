@@ -6,6 +6,7 @@ import { NeedAuthGuard } from '../auth.guard';
 import { PoliciesComponent } from './policies/policies.component';
 import { PolicyComponent } from './policy/policy.component';
 import { ClientsComponent } from './clients/clients.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
       {
         path: 'clients',
         component: ClientsComponent,
+        canActivate: [NeedAuthGuard],
+      },
+      {
+        path: 'profile/:id',
+        component: ProfileComponent,
         canActivate: [NeedAuthGuard],
       },
       {

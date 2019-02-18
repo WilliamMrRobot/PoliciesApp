@@ -55,8 +55,8 @@ export class PoliciesComponent {
       startValidity: { title: 'START VALIDITY', type: 'string', width: '14%' },
       coverPeriod: { title: 'COVER PERIOD', type: 'string', width: '14%' },
       price: { title: 'PRICE', type: 'string', width: '14%' },
-      coverageId: { title: 'COVERAGE', type: 'string', width: '14%' },
-      riskId: { title: 'RISK', type: 'string', width: '14%' },
+      coverageName: { title: 'COVERAGE', type: 'string', width: '14%' },
+      riskName: { title: 'RISK', type: 'string', width: '14%' },
     },
   };
 
@@ -100,20 +100,20 @@ export class PoliciesComponent {
   }
 
   onCreateUpdateConfirm(event) {
-    let hotelsIdToAssociate: String[];
-    hotelsIdToAssociate = [];
+    let policiesIdToAssociate: String[];
+    policiesIdToAssociate = [];
     for (let obj in this.policiesToAdmin) {
       let hotelId = this.policiesToAdmin[obj]._id;
-      hotelsIdToAssociate.push(hotelId);
+      policiesIdToAssociate.push(hotelId);
     }
 
     const applicationData = {
-      hotels: hotelsIdToAssociate,
+      hotels: policiesIdToAssociate,
       application: this.idApplication,
     };
 
     this._dashboardService
-      .associateHotelsApplication(
+      .associatePoliciesApplication(
         'application-associate-hotels',
         this.customer.getToken(),
         applicationData,
@@ -124,7 +124,7 @@ export class PoliciesComponent {
           if (result.message === 'OK') {
             this.utilities.openSimpleModal(
               'Attention',
-              'Hotel Saved',
+              'Policy Saved',
               this.viewContainer,
             );
             const urlDest = '/admin/application';
