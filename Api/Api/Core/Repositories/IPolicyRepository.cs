@@ -11,5 +11,7 @@ namespace Api.Core.Repositories
 		string UpdatePolicy(int id, Policy policy);
 		string DeletePolicy(int id);
 		IEnumerable<PolicyDto> GetPolicies();
+		bool CheckIfRiskIsHigh(byte riskId);
+		bool CheckCoveragePercentOver50(byte coverageId);
 	}
 }

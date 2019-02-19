@@ -37,20 +37,26 @@ namespace Api.Persistence.Repositories
 				.SingleOrDefault(p => p.Id == policyId);
 		}
 
-		private static bool CheckCoveragePercentOver50(Coverage coverage)
+		public bool CheckCoveragePercentOver50(byte coverageId)
 		{
+			var coverage = _context.Coverages.FirstOrDefault(c => c.Id.Equals(coverageId));
 			return (coverage != null && coverage.Cover > 50);
 		}
+
+		public bool CheckIfRiskIsHigh(byte riskId)
+		{
+			var risk = _context.Risks.FirstOrDefault(r => r.Id.Equals(riskId));
+			return (risk != null && risk.Name.ToLower() == "alto");
+		}
+
 
 		public string AddPolicy(Policy policy)
 		{
 			try
 			{
-				var risk = _context.Risks.FirstOrDefault(r => r.Id.Equals(policy.RiskId));
-				if (risk != null && risk.Name.ToLower() == "alto")
+				if (CheckIfRiskIsHigh(policy.RiskId))
 				{
-					var coverage = _context.Coverages.FirstOrDefault(c => c.Id.Equals(policy.CoverageId));
-					if (CheckCoveragePercentOver50(coverage)) return "Error, coverage is over 50 percent";
+					if (CheckCoveragePercentOver50(policy.CoverageId)) return "Error, coverage is over 50 percent";
 				}
 				_context.Policies.Add(policy);
 				return "ok";
