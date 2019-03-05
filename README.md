@@ -6,6 +6,7 @@ Existen 2 tipos de usuario.
 admin y client
 
 Para admin esta creado el usuario wil@wil.com con password Pepep.449
+
 Para client esta creado el usuario cliente@cliente.com con password Pepep.449
 
 * Al momento de registrar cualquier usuario, por defecto se creara con el rol de client.
@@ -14,7 +15,9 @@ Para client esta creado el usuario cliente@cliente.com con password Pepep.449
 
 ## Interfaz Administrador
 ### Lista de Polizas
+
 <img width="791" alt="listapolicies" src="https://user-images.githubusercontent.com/6864141/53813800-69580d80-3f2c-11e9-98b2-f39668d477c5.png">
+
 ### Crear Poliza 
 Se agrega mensaje de validación indicando la regla, no se aplica la regla en front, la regla esta en backend
 
@@ -22,10 +25,12 @@ Se agrega mensaje de validación indicando la regla, no se aplica la regla en fr
 
 ### Se válida la regla de no crear polizas con riesgo alto con una covertura mayor a 50%
 Mensaje de error si no se cumple la regla.
+
 <img width="795" alt="validaenbackend" src="https://user-images.githubusercontent.com/6864141/53813912-a91ef500-3f2c-11e9-86c9-4872a9ac1515.PNG">
 
 ### Poliza Guardada
 Mensaje que indica que la poliza ha sido guardada y se puede visualizar en el listado de polizas
+
 <img width="790" alt="polizaguardada" src="https://user-images.githubusercontent.com/6864141/53813895-a02e2380-3f2c-11e9-9eb7-61466a11796c.PNG">
 
 ### Lista de Clientes
